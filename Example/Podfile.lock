@@ -1,0 +1,16 @@
+PODS:
+  - CMSMLeaksFinder (0.1.0)
+
+DEPENDENCIES:
+  - CMSMLeaksFinder (from `../`)
+
+EXTERNAL SOURCES:
+  CMSMLeaksFinder:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  CMSMLeaksFinder: 776f18931329bb46c5800362dbf4c00884ca8072
+
+PODFILE CHECKSUM: 989d4a0c5cf2a9ba76f4989c8f17a8180862405e
+
+COCOAPODS: 1.10.0

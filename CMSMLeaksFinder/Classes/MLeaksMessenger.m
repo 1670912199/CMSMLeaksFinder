@@ -24,16 +24,34 @@ static __weak UIAlertView *alertView;
                message:(NSString *)message
               delegate:(id<UIAlertViewDelegate>)delegate
  additionalButtonTitle:(NSString *)additionalButtonTitle {
-    [alertView dismissWithClickedButtonIndex:0 animated:NO];
-    UIAlertView *alertViewTemp = [[UIAlertView alloc] initWithTitle:title
-                                                            message:message
-                                                           delegate:delegate
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:additionalButtonTitle, nil];
-    [alertViewTemp show];
-    alertView = alertViewTemp;
+    UIAlertController *alertView = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:(UIAlertControllerStyleAlert)];
     
     NSLog(@"%@: %@", title, message);
+}
+
++ (UIWindow *)cms_currentWindow {
+    UIWindow *window = nil;
+//    [[[UIApplication sharedApplication] delegate] window];
+    if (window == nil) {
+        
+        if(@available(iOS 15.0, *)) {
+            for (UIWindowScene *windowScene in [UIApplication sharedApplication].connectedScenes) {
+                UIWindow *mainWindow = [windowScene valueForKeyPath:@"delegate.window"];
+                if (mainWindow.windowLevel == UIWindowLevelNormal) {
+                    window = mainWindow;
+                    break;
+                }
+            }
+        } else {
+            for(UIWindow *tmpWin in [[UIApplication sharedApplication] windows]) {
+                if (tmpWin.windowLevel == UIWindowLevelNormal) {
+                    window = tmpWin;
+                    break;
+                }
+            }
+        }
+    }
+    return window;
 }
 
 @end

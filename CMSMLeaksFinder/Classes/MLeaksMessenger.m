@@ -24,32 +24,31 @@ static __weak UIAlertView *alertView;
                message:(NSString *)message
               delegate:(id<UIAlertViewDelegate>)delegate
  additionalButtonTitle:(NSString *)additionalButtonTitle {
-    UIAlertController *alertView = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:(UIAlertControllerStyleAlert)];
-    
+    UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:title
+                                                                   message:message
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *conform = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    }];
+    [alertVC addAction:conform];
+
     NSLog(@"%@: %@", title, message);
+    [[self cms_currentWindow].rootViewController presentViewController:alertVC animated:YES completion:nil];
 }
 
 + (UIWindow *)cms_currentWindow {
     UIWindow *window = nil;
-//    [[[UIApplication sharedApplication] delegate] window];
-    if (window == nil) {
-        
-        if(@available(iOS 15.0, *)) {
-            for (UIWindowScene *windowScene in [UIApplication sharedApplication].connectedScenes) {
-                UIWindow *mainWindow = [windowScene valueForKeyPath:@"delegate.window"];
-                if (mainWindow.windowLevel == UIWindowLevelNormal) {
-                    window = mainWindow;
-                    break;
-                }
+    if (@available(iOS 15, *)) {
+        __block UIScene * _Nonnull tmpSc;
+        [[[UIApplication sharedApplication] connectedScenes] enumerateObjectsUsingBlock:^(UIScene * _Nonnull obj, BOOL * _Nonnull stop) {
+            if (obj.activationState == UISceneActivationStateForegroundActive) {
+                tmpSc = obj;
+                *stop = YES;
             }
-        } else {
-            for(UIWindow *tmpWin in [[UIApplication sharedApplication] windows]) {
-                if (tmpWin.windowLevel == UIWindowLevelNormal) {
-                    window = tmpWin;
-                    break;
-                }
-            }
-        }
+        }];
+        UIWindowScene *curWinSc = (UIWindowScene *)tmpSc;
+        window = curWinSc.keyWindow;
+    } else {
+        window = [UIApplication sharedApplication].windows.firstObject;
     }
     return window;
 }

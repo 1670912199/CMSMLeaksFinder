@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'CMSMLeaksFinder'
-  s.version          = '0.1.2'
+  s.version          = '0.1.3'
   s.summary          = 'A short description of CMSMLeaksFinder.'
 
 # This description is used to generate tags and improve search results.
@@ -31,6 +31,26 @@ TODO: Add long description of the pod here.
   s.ios.deployment_target = '9.0'
 
   s.source_files = 'CMSMLeaksFinder/Classes/**/*'
+#  s.public_header_files = 'CMSMLeaksFinder/Classes/**/*.{h}'
+
+  mrr_files = [
+    'CMSMLeaksFinder/Classes/FBRetainCycleDetector/Associations/FBAssociationManager.h',
+    'CMSMLeaksFinder/Classes/FBRetainCycleDetector/Associations/FBAssociationManager.mm',
+    'CMSMLeaksFinder/Classes/FBRetainCycleDetector/Layout/Blocks/FBBlockStrongLayout.h',
+    'CMSMLeaksFinder/Classes/FBRetainCycleDetector/Layout/Blocks/FBBlockStrongLayout.m',
+    'CMSMLeaksFinder/Classes/FBRetainCycleDetector/Layout/Blocks/FBBlockStrongRelationDetector.h',
+    'CMSMLeaksFinder/Classes/FBRetainCycleDetector/Layout/Blocks/FBBlockStrongRelationDetector.m',
+    'CMSMLeaksFinder/Classes/FBRetainCycleDetector/Layout/Classes/FBClassStrongLayoutHelpers.h',
+    'CMSMLeaksFinder/Classes/FBRetainCycleDetector/Layout/Classes/FBClassStrongLayoutHelpers.m',
+  ]
+
+  files = Pathname.glob("CMSMLeaksFinder/Classes/**/*.{h,m,mm}")
+  files = files.map {|file| file.to_path}
+  files = files.reject {|file| mrr_files.include?(file)}
+
+  s.requires_arc = files.sort
+  s.framework = "Foundation", "CoreGraphics", "UIKit"
+  s.library = 'c++'
 #  s.dependency 'CMSFBRetainCycleDetector'
   
 #  s.subspec 'CMSFBRetainCycleDetector' do |sss|

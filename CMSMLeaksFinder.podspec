@@ -49,6 +49,18 @@ TODO: Add long description of the pod here.
   files = files.reject {|file| mrr_files.include?(file)}
 
   s.requires_arc = files.sort
+  
+  s.public_header_files = [
+    'CMSMLeaksFinder/Classes/FBRetainCycleDetector/Detector/FBRetainCycleDetector.h',
+    'CMSMLeaksFinder/Classes/FBRetainCycleDetector/Associations/FBAssociationManager.h',
+    'CMSMLeaksFinder/Classes/FBRetainCycleDetector/Graph/FBObjectiveCBlock.h',
+    'CMSMLeaksFinder/Classes/FBRetainCycleDetector/Graph/FBObjectiveCGraphElement.h',
+    'CMSMLeaksFinder/Classes/FBRetainCycleDetector/Graph/Specialization/FBObjectiveCNSCFTimer.h',
+    'CMSMLeaksFinder/Classes/FBRetainCycleDetector/Graph/FBObjectiveCObject.h',
+    'CMSMLeaksFinder/Classes/FBRetainCycleDetector/Graph/FBObjectGraphConfiguration.h',
+    'CMSMLeaksFinder/Classes/FBRetainCycleDetector/Filtering/FBStandardGraphEdgeFilters.h',
+  ]
+  
   s.framework = "Foundation", "CoreGraphics", "UIKit"
   s.library = 'c++'
 #  s.dependency 'CMSFBRetainCycleDetector'

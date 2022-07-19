@@ -1,5 +1,5 @@
 PODS:
-  - CMSMLeaksFinder (0.1.2)
+  - CMSMLeaksFinder (0.1.3)
 
 DEPENDENCIES:
   - CMSMLeaksFinder (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  CMSMLeaksFinder: 3430e5656dd25cd4b09643da2aae3c10334ba4eb
+  CMSMLeaksFinder: 2a8d2380b3f525283a8488d95f45f819bd943ccc
 
 PODFILE CHECKSUM: 989d4a0c5cf2a9ba76f4989c8f17a8180862405e
 

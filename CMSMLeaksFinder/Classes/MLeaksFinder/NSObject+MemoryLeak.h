@@ -11,14 +11,21 @@
  */
 
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
 
-@interface MLeaksMessenger : NSObject
+#define MLCheck(TARGET) [self willReleaseObject:(TARGET) relationship:@#TARGET];
 
-+ (void)alertWithTitle:(NSString *)title message:(NSString *)message;
-+ (void)alertWithTitle:(NSString *)title
-               message:(NSString *)message
-              delegate:(id<UIAlertViewDelegate>)delegate
- additionalButtonTitle:(NSString *)additionalButtonTitle;
+@interface NSObject (MemoryLeak)
+
+- (BOOL)willDealloc;
+- (void)willReleaseObject:(id)object relationship:(NSString *)relationship;
+
+- (void)willReleaseChild:(id)child;
+- (void)willReleaseChildren:(NSArray *)children;
+
+- (NSArray *)viewStack;
+
++ (void)addClassNamesToWhitelist:(NSArray *)classNames;
+
++ (void)swizzleSEL:(SEL)originalSEL withSEL:(SEL)swizzledSEL;
 
 @end

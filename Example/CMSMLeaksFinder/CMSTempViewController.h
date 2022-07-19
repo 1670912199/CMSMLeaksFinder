@@ -10,9 +10,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^didClickBlock)(id obj);
 @interface CMSTempViewController : UIViewController
 
-
+@property (nonatomic, copy) didClickBlock clickBlk;
 @end
 
 NS_ASSUME_NONNULL_END

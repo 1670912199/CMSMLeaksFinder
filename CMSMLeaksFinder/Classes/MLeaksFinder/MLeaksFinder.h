@@ -10,30 +10,20 @@
  * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
  */
 
-#import <Foundation/Foundation.h>
+#import "NSObject+MemoryLeak.h"
 
-#define MLCheck(TARGET) [self willReleaseObject:(TARGET) relationship:@#TARGET];
+//#define MEMORY_LEAKS_FINDER_ENABLED 0
 
-@protocol MLeaksFinderDelegate <NSObject>
+#ifdef MEMORY_LEAKS_FINDER_ENABLED
+#define _INTERNAL_MLF_ENABLED MEMORY_LEAKS_FINDER_ENABLED
+#else
+#define _INTERNAL_MLF_ENABLED DEBUG
+#endif
 
-- (BOOL)viewController:(UIViewController *)viewController shouldCheckProperty:(NSString *)propertyName;
+#define MEMORY_LEAKS_FINDER_RETAIN_CYCLE_ENABLED 1
 
-@end
-
-@interface NSObject (MemoryLeak)
-
-- (BOOL)willDealloc;
-- (void)willReleaseObject:(id)object relationship:(NSString *)relationship;
-
-- (void)willReleaseChild:(id)child;
-- (void)willReleaseChildren:(NSArray *)children;
-
-- (NSArray *)viewStack;
-
-+ (void)setDelegate:(id<MLeaksFinderDelegate>)delegate;
-
-+ (void)addClassNamesToWhitelist:(NSArray *)classNames;
-
-+ (void)swizzleSEL:(SEL)originalSEL withSEL:(SEL)swizzledSEL;
-
-@end
+#ifdef MEMORY_LEAKS_FINDER_RETAIN_CYCLE_ENABLED
+#define _INTERNAL_MLF_RC_ENABLED MEMORY_LEAKS_FINDER_RETAIN_CYCLE_ENABLED
+#elif COCOAPODS
+#define _INTERNAL_MLF_RC_ENABLED COCOAPODS
+#endif

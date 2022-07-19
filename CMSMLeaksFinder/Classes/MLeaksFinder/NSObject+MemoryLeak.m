@@ -17,13 +17,12 @@
 #import <UIKit/UIKit.h>
 
 #if _INTERNAL_MLF_RC_ENABLED
-#import <FBRetainCycleDetector/FBRetainCycleDetector.h>
+#import "FBRetainCycleDetector.h"
 #endif
 
 static const void *const kViewStackKey = &kViewStackKey;
 static const void *const kParentPtrsKey = &kParentPtrsKey;
 const void *const kLatestSenderKey = &kLatestSenderKey;
-const void *const kDelegateKey = &kDelegateKey;
 
 @implementation NSObject (MemoryLeak)
 
@@ -110,10 +109,6 @@ const void *const kDelegateKey = &kDelegateKey;
 
 - (void)setParentPtrs:(NSSet *)parentPtrs {
     objc_setAssociatedObject(self, kParentPtrsKey, parentPtrs, OBJC_ASSOCIATION_RETAIN);
-}
-
-+ (void)setDelegate:(id<MLeaksFinderDelegate>)delegate {
-    objc_setAssociatedObject([NSObject class], kDelegateKey, delegate, OBJC_ASSOCIATION_RETAIN);
 }
 
 + (NSMutableSet *)classNamesWhitelist {

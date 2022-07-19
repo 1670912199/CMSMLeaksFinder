@@ -10,20 +10,15 @@
  * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
  */
 
-#import "NSObject+MemoryLeak.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-//#define MEMORY_LEAKS_FINDER_ENABLED 0
+@interface MLeaksMessenger : NSObject
 
-#ifdef MEMORY_LEAKS_FINDER_ENABLED
-#define _INTERNAL_MLF_ENABLED MEMORY_LEAKS_FINDER_ENABLED
-#else
-#define _INTERNAL_MLF_ENABLED DEBUG
-#endif
++ (void)alertWithTitle:(NSString *)title message:(NSString *)message;
++ (void)alertWithTitle:(NSString *)title
+               message:(NSString *)message
+        tapButtonBlock:(void(^)(void))block
+ additionalButtonTitle:(NSString *)additionalButtonTitle;
 
-#define MEMORY_LEAKS_FINDER_RETAIN_CYCLE_ENABLED 0
-
-#ifdef MEMORY_LEAKS_FINDER_RETAIN_CYCLE_ENABLED
-#define _INTERNAL_MLF_RC_ENABLED MEMORY_LEAKS_FINDER_RETAIN_CYCLE_ENABLED
-#elif COCOAPODS
-#define _INTERNAL_MLF_RC_ENABLED COCOAPODS
-#endif
+@end

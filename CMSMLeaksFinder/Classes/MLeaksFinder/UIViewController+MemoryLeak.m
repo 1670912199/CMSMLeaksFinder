@@ -17,7 +17,6 @@
 #if _INTERNAL_MLF_ENABLED
 
 const void *const kHasBeenPoppedKey = &kHasBeenPoppedKey;
-extern const void *const kDelegateKey;
 
 @implementation UIViewController (MemoryLeak)
 
@@ -68,25 +67,6 @@ extern const void *const kDelegateKey;
     if (self.isViewLoaded) {
         [self willReleaseChild:self.view];
     }
-    
-    unsigned int count;
-    Ivar *ivars = class_copyIvarList([self class], &count);
-    for (unsigned int i = 0; i < count; ++i) {
-        Ivar ivar = ivars[i];
-        NSString *ivarName = @(ivar_getName(ivar));
-        NSString *ivarType = @(ivar_getTypeEncoding(ivar));
-        if (![ivarType hasPrefix:@"@"]) {
-            continue;
-        }
-        id<MLeaksFinderDelegate> delegate = objc_getAssociatedObject([NSObject class], kDelegateKey);
-        if (delegate && [delegate viewController:self shouldCheckProperty:ivarName]) {
-            id ivarObject = object_getIvar(self, ivar);
-            if (ivarObject) {
-                [self willReleaseChild:ivarObject];
-            }
-        }
-    }
-    free(ivars);
     
     return YES;
 }

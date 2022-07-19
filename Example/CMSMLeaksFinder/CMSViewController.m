@@ -10,6 +10,8 @@
 #import "CMSTempViewController.h"
 
 @interface CMSViewController ()
+/**  **/
+@property (nonatomic, strong) CMSTempViewController *tempVc;
 
 @end
 
@@ -21,8 +23,12 @@
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    CMSTempViewController *tempVc = [[CMSTempViewController alloc] init];
-    [self presentViewController:tempVc animated:YES completion:nil];
+    _tempVc = [[CMSTempViewController alloc] init];
+    _tempVc.clickBlk = ^(id  _Nonnull obj) {
+        self.view.layer.borderColor = [UIColor redColor].CGColor;
+        self.view.layer.borderWidth = 1;
+    };
+    [self presentViewController:_tempVc animated:YES completion:nil];
 }
 
 @end

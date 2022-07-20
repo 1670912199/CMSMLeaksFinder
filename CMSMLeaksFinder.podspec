@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'CMSMLeaksFinder'
-  s.version          = '0.1.6'
+  s.version          = '0.1.7'
   s.summary          = 'A short description of CMSMLeaksFinder.'
 
 # This description is used to generate tags and improve search results.
@@ -74,7 +74,7 @@ TODO: Add long description of the pod here.
     sss.public_header_files = 'CMSMLeaksFinder/Classes/MLeaksFinder/*.{h}'
   end
   s.subspec 'rcd_fishhook' do |sss|
-    sss.source_files = 'CMSMLeaksFinder/Classes/rcd_fishhook/*.{c}'
+    sss.source_files = 'CMSMLeaksFinder/Classes/rcd_fishhook/*.{h,c}'
     sss.public_header_files = 'CMSMLeaksFinder/Classes/rcd_fishhook/*.{h}'
   end
   

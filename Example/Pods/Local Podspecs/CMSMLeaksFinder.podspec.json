@@ -1,6 +1,6 @@
 {
   "name": "CMSMLeaksFinder",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "summary": "A short description of CMSMLeaksFinder.",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com/1670912199/CMSMLeaksFinder",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/1670912199/CMSMLeaksFinder.git",
-    "tag": "0.1.5"
+    "tag": "0.1.6"
   },
   "platforms": {
     "ios": "9.0"
@@ -108,7 +108,7 @@
     },
     {
       "name": "rcd_fishhook",
-      "source_files": "CMSMLeaksFinder/Classes/rcd_fishhook/*.{c}",
+      "source_files": "CMSMLeaksFinder/Classes/rcd_fishhook/*.{h,c}",
       "public_header_files": "CMSMLeaksFinder/Classes/rcd_fishhook/*.{h}"
     }
   ]

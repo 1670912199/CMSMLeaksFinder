@@ -10,6 +10,14 @@
 #endif
 #endif
 
+#import "FBRetainCycleDetector.h"
+#import "FBAssociationManager.h"
+#import "FBObjectiveCBlock.h"
+#import "FBObjectiveCGraphElement.h"
+#import "FBObjectiveCNSCFTimer.h"
+#import "FBObjectiveCObject.h"
+#import "FBObjectGraphConfiguration.h"
+#import "FBStandardGraphEdgeFilters.h"
 #import "FBAssociationManager.h"
 #import "FBAssociationManager+Internal.h"
 #import "FBNodeEnumerator.h"

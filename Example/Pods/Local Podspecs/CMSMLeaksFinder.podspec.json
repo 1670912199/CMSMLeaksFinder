@@ -1,6 +1,6 @@
 {
   "name": "CMSMLeaksFinder",
-  "version": "0.1.3",
+  "version": "0.1.5",
   "summary": "A short description of CMSMLeaksFinder.",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com/1670912199/CMSMLeaksFinder",
@@ -13,12 +13,11 @@
   },
   "source": {
     "git": "https://github.com/1670912199/CMSMLeaksFinder.git",
-    "tag": "0.1.3"
+    "tag": "0.1.5"
   },
   "platforms": {
     "ios": "9.0"
   },
-  "source_files": "CMSMLeaksFinder/Classes/**/*",
   "requires_arc": [
     "CMSMLeaksFinder/Classes/FBRetainCycleDetector/Associations/Internal/FBAssociationManager+Internal.h",
     "CMSMLeaksFinder/Classes/FBRetainCycleDetector/Detector/FBNodeEnumerator.h",
@@ -80,10 +79,37 @@
     "CMSMLeaksFinder/Classes/MLeaksFinder/UIViewController+MemoryLeak.m",
     "CMSMLeaksFinder/Classes/rcd_fishhook/rcd_fishhook.h"
   ],
+  "public_header_files": [
+    "CMSMLeaksFinder/Classes/FBRetainCycleDetector/Detector/FBRetainCycleDetector.h",
+    "CMSMLeaksFinder/Classes/FBRetainCycleDetector/Associations/FBAssociationManager.h",
+    "CMSMLeaksFinder/Classes/FBRetainCycleDetector/Graph/FBObjectiveCBlock.h",
+    "CMSMLeaksFinder/Classes/FBRetainCycleDetector/Graph/FBObjectiveCGraphElement.h",
+    "CMSMLeaksFinder/Classes/FBRetainCycleDetector/Graph/Specialization/FBObjectiveCNSCFTimer.h",
+    "CMSMLeaksFinder/Classes/FBRetainCycleDetector/Graph/FBObjectiveCObject.h",
+    "CMSMLeaksFinder/Classes/FBRetainCycleDetector/Graph/FBObjectGraphConfiguration.h",
+    "CMSMLeaksFinder/Classes/FBRetainCycleDetector/Filtering/FBStandardGraphEdgeFilters.h"
+  ],
   "frameworks": [
     "Foundation",
     "CoreGraphics",
     "UIKit"
   ],
-  "libraries": "c++"
+  "libraries": "c++",
+  "subspecs": [
+    {
+      "name": "FBRetainCycleDetector",
+      "source_files": "CMSMLeaksFinder/Classes/FBRetainCycleDetector/**/*.{h,m,mm}",
+      "public_header_files": "CMSMLeaksFinder/Classes/FBRetainCycleDetector/**/*.{h}"
+    },
+    {
+      "name": "MLeaksFinder",
+      "source_files": "CMSMLeaksFinder/Classes/MLeaksFinder/*.{h,m}",
+      "public_header_files": "CMSMLeaksFinder/Classes/MLeaksFinder/*.{h}"
+    },
+    {
+      "name": "rcd_fishhook",
+      "source_files": "CMSMLeaksFinder/Classes/rcd_fishhook/*.{c}",
+      "public_header_files": "CMSMLeaksFinder/Classes/rcd_fishhook/*.{h}"
+    }
+  ]
 }

@@ -1,5 +1,11 @@
 PODS:
-  - CMSMLeaksFinder (0.1.3)
+  - CMSMLeaksFinder (0.1.5):
+    - CMSMLeaksFinder/FBRetainCycleDetector (= 0.1.5)
+    - CMSMLeaksFinder/MLeaksFinder (= 0.1.5)
+    - CMSMLeaksFinder/rcd_fishhook (= 0.1.5)
+  - CMSMLeaksFinder/FBRetainCycleDetector (0.1.5)
+  - CMSMLeaksFinder/MLeaksFinder (0.1.5)
+  - CMSMLeaksFinder/rcd_fishhook (0.1.5)
 
 DEPENDENCIES:
   - CMSMLeaksFinder (from `../`)
@@ -9,7 +15,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  CMSMLeaksFinder: 2a8d2380b3f525283a8488d95f45f819bd943ccc
+  CMSMLeaksFinder: deb8f8497edff148d329b135b0a98c40a749fc1d
 
 PODFILE CHECKSUM: 989d4a0c5cf2a9ba76f4989c8f17a8180862405e
 

@@ -30,7 +30,7 @@ TODO: Add long description of the pod here.
 
   s.ios.deployment_target = '9.0'
 
-  s.source_files = 'CMSMLeaksFinder/Classes/**/*'
+#  s.source_files = 'CMSMLeaksFinder/Classes/**/*'
 #  s.public_header_files = 'CMSMLeaksFinder/Classes/**/*.{h}'
 
   mrr_files = [
@@ -65,10 +65,18 @@ TODO: Add long description of the pod here.
   s.library = 'c++'
 #  s.dependency 'CMSFBRetainCycleDetector'
   
-#  s.subspec 'CMSFBRetainCycleDetector' do |sss|
-#    sss.source_files = 'CMSMLeaksFinder/Classes/FBRetainCycleDetector/*.{h,m}'
-#    sss.public_header_files = 'CMSMLeaksFinder/Classes/FBRetainCycleDetector/*.{h}'
-#  end
+  s.subspec 'FBRetainCycleDetector' do |sss|
+    sss.source_files = 'CMSMLeaksFinder/Classes/FBRetainCycleDetector/**/*.{h,m,mm}'
+    sss.public_header_files = 'CMSMLeaksFinder/Classes/FBRetainCycleDetector/**/*.{h}'
+  end
+  s.subspec 'MLeaksFinder' do |sss|
+    sss.source_files = 'CMSMLeaksFinder/Classes/MLeaksFinder/*.{h,m}'
+    sss.public_header_files = 'CMSMLeaksFinder/Classes/MLeaksFinder/*.{h}'
+  end
+  s.subspec 'rcd_fishhook' do |sss|
+    sss.source_files = 'CMSMLeaksFinder/Classes/rcd_fishhook/*.{c}'
+    sss.public_header_files = 'CMSMLeaksFinder/Classes/rcd_fishhook/*.{h}'
+  end
   
   # s.resource_bundles = {
   #   'CMSMLeaksFinder' => ['CMSMLeaksFinder/Assets/*.png']

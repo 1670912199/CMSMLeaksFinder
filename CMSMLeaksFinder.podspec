@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'CMSMLeaksFinder'
-  s.version          = '0.1.7'
+  s.version          = '0.2.0'
   s.summary          = 'A short description of CMSMLeaksFinder.'
 
 # This description is used to generate tags and improve search results.
@@ -50,32 +50,30 @@ TODO: Add long description of the pod here.
 
   s.requires_arc = files.sort
   
-  s.public_header_files = [
-    'CMSMLeaksFinder/Classes/FBRetainCycleDetector/Detector/FBRetainCycleDetector.h',
-    'CMSMLeaksFinder/Classes/FBRetainCycleDetector/Associations/FBAssociationManager.h',
-    'CMSMLeaksFinder/Classes/FBRetainCycleDetector/Graph/FBObjectiveCBlock.h',
-    'CMSMLeaksFinder/Classes/FBRetainCycleDetector/Graph/FBObjectiveCGraphElement.h',
-    'CMSMLeaksFinder/Classes/FBRetainCycleDetector/Graph/Specialization/FBObjectiveCNSCFTimer.h',
-    'CMSMLeaksFinder/Classes/FBRetainCycleDetector/Graph/FBObjectiveCObject.h',
-    'CMSMLeaksFinder/Classes/FBRetainCycleDetector/Graph/FBObjectGraphConfiguration.h',
-    'CMSMLeaksFinder/Classes/FBRetainCycleDetector/Filtering/FBStandardGraphEdgeFilters.h',
-  ]
-  
   s.framework = "Foundation", "CoreGraphics", "UIKit"
-  s.library = 'c++'
-#  s.dependency 'CMSFBRetainCycleDetector'
+#  s.library = 'c++'
   
   s.subspec 'FBRetainCycleDetector' do |sss|
+    sss.dependency 'CMSMLeaksFinder/rcd_fishhook'
     sss.source_files = 'CMSMLeaksFinder/Classes/FBRetainCycleDetector/**/*.{h,m,mm}'
-    sss.public_header_files = 'CMSMLeaksFinder/Classes/FBRetainCycleDetector/**/*.{h}'
+    sss.public_header_files = [
+      'CMSMLeaksFinder/Classes/FBRetainCycleDetector/Detector/FBRetainCycleDetector.h',
+      'CMSMLeaksFinder/Classes/FBRetainCycleDetector/Associations/FBAssociationManager.h',
+      'CMSMLeaksFinder/Classes/FBRetainCycleDetector/Graph/FBObjectiveCBlock.h',
+      'CMSMLeaksFinder/Classes/FBRetainCycleDetector/Graph/FBObjectiveCGraphElement.h',
+      'CMSMLeaksFinder/Classes/FBRetainCycleDetector/Graph/Specialization/FBObjectiveCNSCFTimer.h',
+      'CMSMLeaksFinder/Classes/FBRetainCycleDetector/Graph/FBObjectiveCObject.h',
+      'CMSMLeaksFinder/Classes/FBRetainCycleDetector/Graph/FBObjectGraphConfiguration.h',
+      'CMSMLeaksFinder/Classes/FBRetainCycleDetector/Filtering/FBStandardGraphEdgeFilters.h',
+    ]
   end
   s.subspec 'MLeaksFinder' do |sss|
+    sss.dependency 'CMSMLeaksFinder/FBRetainCycleDetector'
     sss.source_files = 'CMSMLeaksFinder/Classes/MLeaksFinder/*.{h,m}'
-    sss.public_header_files = 'CMSMLeaksFinder/Classes/MLeaksFinder/*.{h}'
   end
+  
   s.subspec 'rcd_fishhook' do |sss|
     sss.source_files = 'CMSMLeaksFinder/Classes/rcd_fishhook/*.{h,c}'
-    sss.public_header_files = 'CMSMLeaksFinder/Classes/rcd_fishhook/*.{h}'
   end
   
   # s.resource_bundles = {

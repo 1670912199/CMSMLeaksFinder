@@ -1,6 +1,0 @@
-framework module CMSMLeaksFinder {
-  umbrella header "CMSMLeaksFinder-umbrella.h"
-
-  export *
-  module * { export * }
-}

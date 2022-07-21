@@ -1,6 +1,0 @@
-framework module Pods_CMSMLeaksFinder_Tests {
-  umbrella header "Pods-CMSMLeaksFinder_Tests-umbrella.h"
-
-  export *
-  module * { export * }
-}
